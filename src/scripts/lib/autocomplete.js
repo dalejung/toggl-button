@@ -42,12 +42,6 @@ AutoComplete.prototype.addEvents = function () {
     }, 150);
   });
 
-  this.field.addEventListener('focusout', function (e) {
-    if (that.field.contains(e.relatedTarget)) return;
-    that.placeholderItem.removeEventListener('click', bindedToggleDropdown);
-    that.closeDropdown();
-  });
-
   that.filter.addEventListener('keydown', function (e) {
     if (e.code === 'Tab') {
       that.closeDropdown();
@@ -655,12 +649,6 @@ TagAutoComplete.prototype.addEvents = function () {
     setTimeout(() => {
       that.placeholderItem.addEventListener('click', bindedToggleDropdown);
     }, 150);
-  });
-
-  this.field.addEventListener('focusout', function (e) {
-    if (that.field.contains(e.relatedTarget)) return;
-    that.placeholderItem.removeEventListener('click', bindedToggleDropdown);
-    that.closeDropdown();
   });
 
   this.el.addEventListener('click', function (e) {

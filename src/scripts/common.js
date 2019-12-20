@@ -295,6 +295,10 @@ window.togglbutton = {
       return;
     }
 
+    function stopEvents (e) {
+      e.stopImmediatePropagation();
+    }
+
     const pid = response.entry.pid;
     const tid = response.entry.tid;
     const editFormHeight = 300;
@@ -424,6 +428,11 @@ window.togglbutton = {
       e.stopPropagation();
     });
 
+    // try to disable JIRA default events (not working)
+    togglButtonDescription.onblur = stopEvents;
+    togglButtonDescription.onfocusin = stopEvents;
+    togglButtonDescription.onfocusout = stopEvents;
+
     togglbutton.$billable.addEventListener('click', function () {
       this.classList.toggle('tb-checked');
     });
@@ -461,6 +470,7 @@ window.togglbutton = {
   },
 
   createTimerLink: function (params) {
+    console.log('createTimerLink', params);
     let link = createLink('toggl-button');
 
     const project = invokeIfFunction(params.projectName);
